@@ -392,6 +392,6 @@ pip install -e . --force-reinstall
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/JayeshCC/Aiwork/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/JayeshCC/Aiwork/discussions)
+- **Issues**: [GitHub Issues](https://github.com/jayeshchaudhari1210/Aiwork/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/jayeshchaudhari1210/Aiwork/discussions)
 - **Examples**: Browse `examples/` directory for more patterns

@@ -46,9 +46,9 @@ integrations = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/JayeshCC/Aiwork"
-Repository = "https://github.com/JayeshCC/Aiwork"
-Issues = "https://github.com/JayeshCC/Aiwork/issues"
+Homepage = "https://github.com/jayeshchaudhari1210/Aiwork"
+Repository = "https://github.com/jayeshchaudhari1210/Aiwork"
+Issues = "https://github.com/jayeshchaudhari1210/Aiwork/issues"
 
 [project.scripts]
 aiwork-server = "aiwork.api.server:main"

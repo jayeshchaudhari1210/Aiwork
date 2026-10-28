@@ -58,7 +58,7 @@ git clone https://github.com/YOUR_USERNAME/Aiwork.git
 cd Aiwork
 
 # Add upstream remote
-git remote add upstream https://github.com/JayeshCC/Aiwork.git
+git remote add upstream https://github.com/jayeshchaudhari1210/Aiwork.git
 ```
 
 ### Step 2: Create Development Environment

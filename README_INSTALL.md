@@ -4,7 +4,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/JayeshCC/Aiwork.git
+git clone https://github.com/jayeshchaudhari1210/Aiwork.git
 cd Aiwork
 
 # Create virtual environment

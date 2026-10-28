@@ -11,7 +11,7 @@ setup(
     description="Alpha-stage framework for local agentic workflow experiments",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/JayeshCC/Aiwork",
+    url="https://github.com/jayeshchaudhari1210/Aiwork",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     classifiers=[
