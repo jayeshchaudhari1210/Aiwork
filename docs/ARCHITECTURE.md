@@ -25,7 +25,7 @@ graph TD
 
 ### Flow DAG
 
-`src/aiwork/core/flow.py` stores tasks and dependencies. `get_topological_sort()` validates dependency ordering and rejects cycles.
+`src/aiwork/core/flow.py` stores tasks and dependencies. `get_topological_sort()` orders existing task dependencies and rejects cycles. A missing dependency name can still raise `KeyError`; input validation is incomplete.
 
 ### Orchestrator
 
@@ -81,6 +81,9 @@ Submitted JSON task definitions run generic handlers. State is ephemeral and wor
 
 ## Current Limitations
 
+- returned `Flow` sub-flows currently enqueue dictionary keys, so use only the documented `next_tasks` pattern
+- missing dependency names are not handled as clean workflow failures
+- Python metadata and API runtime compatibility need reconciliation
 - execution is sequential
 - state is local and ephemeral
 - the Flask API is demo-only
