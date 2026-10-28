@@ -1,6 +1,6 @@
 # AIWork installation and local verification
 
-AIWork is alpha software. Use a virtual environment and Python 3.11 for the setup verified on 28 October 2026. Metadata advertises >=3.8, but the API uses evaluated 3.10+ union annotations; older-version support is not established.
+AIWork is alpha software. Use a virtual environment and Python 3.11 for the setup verified on 28 October 2026. Metadata requires Python >=3.10; Python 3.11 is the verified target.
 
 ## Install
 
@@ -27,11 +27,11 @@ python examples/agents/customer_support/run.py
 python -m pytest -o addopts= -q
 ```
 
-All three examples exited successfully and all 74 existing tests passed (7 warnings) on Python 3.11.16. OCR, provider replies and adapters are demonstrations, not evidence of real model/service operation. See [README limitations](README.md#known-limitations).
+All three examples exited successfully and all 77 tests passed (7 warnings) on Python 3.11.16. OCR, provider replies and adapters are demonstrations, not evidence of real model/service operation. See [README limitations](README.md#known-limitations).
 
 ## Optional extras are not implemented service integrations
 
-`python -m pip install -e ".[dev]"` installs the development extras; its broad test-version range differs from the requirements file's pytest pin. The verification above used requirements.txt.
+`python -m pip install -e ".[dev]"` installs the development extras; its broad test-version range differs from the requirements file's patched pytest 9.x range. The verification above used requirements.txt.
 
 `python -m pip install -e ".[intel]"` installs OpenVINO as an optional dependency. It does **not** replace the placeholder adapter or turn the simulated benchmark into a hardware measurement.
 

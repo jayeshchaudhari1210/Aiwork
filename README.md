@@ -51,7 +51,7 @@ graph TD
 
 ## Quick Start
 
-Use Python 3.11 for the verified setup below. The package metadata still advertises Python >=3.8, but the evaluated API annotations require 3.10+ and that broader compatibility is not verified.
+Use Python 3.11 for the verified setup below. Package metadata now requires Python >=3.10 to match the API syntax; Python 3.11 is the verified target.
 
 ```bash
 git clone https://github.com/jayeshchaudhari1210/Aiwork.git
@@ -141,17 +141,16 @@ It demonstrates triage, knowledge lookup, response generation, and context flow.
 python -m pytest -o addopts= -q
 ```
 
-On 28 October 2026, the existing suite passed **74 tests** with **7 warnings** on Python **3.11.16**, using the unchanged requirements (including pytest 7.4.3). Quickstart, document-processing, and customer-support examples also exited successfully. Localhost API startup tests were included. This is a dated verification, not a CI badge or a guarantee on every platform.
+On 28 October 2026, the existing suite passed **77 tests** with **7 warnings** on Python **3.11.16**, using the patched requirements with pytest 9.2.0. Quickstart, document-processing, and customer-support examples also exited successfully. Localhost API startup tests were included. This is a dated verification, not a CI badge or a guarantee on every platform.
 
-Integration tests exercise mock/stub behavior. No live provider, Kafka broker, Redis instance, OpenVINO model or measured acceleration was validated. No tracked application CI workflow currently runs this suite on each push.
+Integration tests exercise mock/stub behavior. No live provider, Kafka broker, Redis instance, OpenVINO model or measured acceleration was validated. The Python tests workflow runs this suite on pushes and pull requests.
 
 ## Known limitations
 
-- Declare all dependencies using existing task names before execution. Missing dependency names can raise an uncaught `KeyError` rather than produce a clean failed-workflow result.
-- Use `next_tasks` for the demonstrated dynamic path. Returning a `Flow` object is not a supported reliable sub-flow path: the queue currently receives dictionary keys instead of `Task` instances.
+- Missing dependencies are rejected before execution and mark the workflow failed. Returned sub-flows now enqueue ordered Task instances; dynamic task lists are type-checked. Regression tests cover these paths.
 - Ordinary orchestration is sequential; word-overlap memory is not embedding-based retrieval.
 - The demo API has no authentication/rate limits, retains state in memory and uses daemon threads. Its default host is all interfaces; the documented command explicitly binds to loopback.
-- The Python >=3.8 metadata claim needs reconciliation before broad compatibility can be promised. Use the verified Python 3.11 setup.
+- Metadata now requires Python >=3.10; Python 3.11 is the verified test target.
 - A root LICENSE file was not found. Do not infer a reuse license from the fact that the source is public. License/provenance decisions remain separate work.
 
 These limitations are documented here without changing application behavior or dependency versions.

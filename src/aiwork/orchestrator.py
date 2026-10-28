@@ -1,5 +1,6 @@
 from typing import Dict, Any
 from .core.flow import Flow
+from .core.task import Task
 from .executors.local_executor import LocalExecutor
 from .memory.state_manager import StateManager
 import uuid
@@ -92,6 +93,8 @@ class Orchestrator:
                 # If the result contains new Tasks or a Flow, inject them dynamically
                 if isinstance(result, dict) and "next_tasks" in result:
                     new_tasks = result["next_tasks"]
+                    if not isinstance(new_tasks, (list, tuple)) or not all(isinstance(t, Task) for t in new_tasks):
+                        raise ValueError("next_tasks must contain Task instances")
                     print(f"    [Dynamic] Agent requested {len(new_tasks)} new tasks.")
                     execution_queue.extend(new_tasks)
                 
@@ -99,7 +102,7 @@ class Orchestrator:
                 if isinstance(result, Flow):
                      print(f"    [Dynamic] Agent returned a sub-flow: {result.name}")
                      # For simplicity, just append tasks (in real DAG, we'd need to resolve deps)
-                     execution_queue.extend(result.tasks)
+                     execution_queue.extend(result.get_topological_sort())
 
             except Exception as e:
                 print(f"  Task {task.name} Failed: {e}")

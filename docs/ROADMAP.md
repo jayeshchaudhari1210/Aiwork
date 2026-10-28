@@ -30,10 +30,10 @@ AIWork is an alpha-stage portfolio project. The roadmap is intentionally undated
 
 ### Validate Existing Core
 
-- Correct returned sub-flow queuing and missing-dependency error handling, with regression coverage
-- Reconcile supported Python versions and packaging metadata
+- Maintain returned sub-flow and dependency-error regression coverage
+- Extend compatibility coverage beyond the verified Python 3.11 environment
 - Establish source provenance and an intentional license
-- Add application CI that runs the suite
+- Keep the application CI suite passing
 - Keep the automated suite reliable
 - Improve documentation examples so they match public APIs
 - Add focused tests when workflow behavior changes

@@ -31,6 +31,10 @@ class Flow:
         """
         Returns a list of tasks in topological order for execution.
         """
+        for name, dependencies in self.dependencies.items():
+            missing = dependencies - self.tasks.keys()
+            if missing:
+                raise ValueError(f"Task {name} has unknown dependencies: {', '.join(sorted(missing))}")
         visited = set()
         temp_mark = set()
         sorted_tasks = []
