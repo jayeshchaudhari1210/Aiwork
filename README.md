@@ -141,7 +141,7 @@ It demonstrates triage, knowledge lookup, response generation, and context flow.
 python -m pytest -o addopts= -q
 ```
 
-On 28 October 2026, the existing suite passed **77 tests** with **7 warnings** on Python **3.11.16**, using the patched requirements with pytest 9.2.0. Quickstart, document-processing, and customer-support examples also exited successfully. Localhost API startup tests were included. This is a dated verification, not a CI badge or a guarantee on every platform.
+On 28 October 2026, the existing suite passed **78 tests** with **7 warnings** on Python **3.11.16**, using the patched requirements with pytest 9.2.0. Quickstart, document-processing, and customer-support examples also exited successfully. Localhost API startup tests were included. This is a dated verification, not a CI badge or a guarantee on every platform.
 
 Integration tests exercise mock/stub behavior. No live provider, Kafka broker, Redis instance, OpenVINO model or measured acceleration was validated. The Python tests workflow runs this suite on pushes and pull requests.
 
@@ -149,7 +149,7 @@ Integration tests exercise mock/stub behavior. No live provider, Kafka broker, R
 
 - Missing dependencies are rejected before execution and mark the workflow failed. Returned sub-flows now enqueue ordered Task instances; dynamic task lists are type-checked. Regression tests cover these paths.
 - Ordinary orchestration is sequential; word-overlap memory is not embedding-based retrieval.
-- The demo API has no authentication/rate limits, retains state in memory and uses daemon threads. Its default host is all interfaces; the documented command explicitly binds to loopback.
+- The demo API has no authentication/rate limits, retains state in memory and uses daemon threads. It now binds to loopback by default; wider exposure requires an explicit host option and separate service hardening.
 - Metadata now requires Python >=3.10; Python 3.11 is the verified test target.
 - A root LICENSE file was not found. Do not infer a reuse license from the fact that the source is public. License/provenance decisions remain separate work.
 

@@ -27,7 +27,7 @@ python examples/agents/customer_support/run.py
 python -m pytest -o addopts= -q
 ```
 
-All three examples exited successfully and all 77 tests passed (7 warnings) on Python 3.11.16. OCR, provider replies and adapters are demonstrations, not evidence of real model/service operation. See [README limitations](README.md#known-limitations).
+All three examples exited successfully and all 78 tests passed (7 warnings) on Python 3.11.16. OCR, provider replies and adapters are demonstrations, not evidence of real model/service operation. See [README limitations](README.md#known-limitations).
 
 ## Optional extras are not implemented service integrations
 

@@ -21,7 +21,7 @@ Endpoints:
 IMPORTANT NOTES FOR PRODUCTION:
     - This is a demonstration server, NOT intended for production use
     - Uses in-memory storage (data lost on restart)
-    - Binds to 0.0.0.0 for demonstration (use 127.0.0.1 or configure for production)
+    - Binds to loopback by default; wider exposure requires explicit --host
     - Daemon threads may be forcibly killed on shutdown (use proper thread pool in production)
     - No authentication or rate limiting implemented
 """
@@ -258,7 +258,7 @@ def get_task_status(workflow_id: str, task_name: str):
         return jsonify({"error": str(e)}), 404
 
 
-def is_port_available(port, host="0.0.0.0"):
+def is_port_available(port, host="127.0.0.1"):
     """Check if port is available for binding."""
     import socket
 
@@ -270,7 +270,7 @@ def is_port_available(port, host="0.0.0.0"):
         return False
 
 
-def find_available_port(start_port=5000, max_attempts=10, host="0.0.0.0"):
+def find_available_port(start_port=5000, max_attempts=10, host="127.0.0.1"):
     """Find an available port starting from start_port."""
     for port in range(start_port, start_port + max_attempts):
         if is_port_available(port, host):
@@ -292,8 +292,8 @@ def build_parser():
     )
     parser.add_argument(
         "--host",
-        default="0.0.0.0",
-        help="Host to bind to (default: 0.0.0.0)",
+        default="127.0.0.1",
+        help="Host to bind to (default: 127.0.0.1; explicit 0.0.0.0 exposes all interfaces)",
     )
     parser.add_argument(
         "--debug",
@@ -321,12 +321,12 @@ def main(argv: Sequence[str] | None = None):
     )
 
 
-def start_server(host="0.0.0.0", port=5000, debug=False, auto_port=False):
+def start_server(host="127.0.0.1", port=5000, debug=False, auto_port=False):
     """
     Start the Flask API server.
 
     Args:
-        host: Host to bind to (default: 0.0.0.0 for external access)
+        host: Host to bind to (default: 127.0.0.1 for local access)
               WARNING: 0.0.0.0 binds to all network interfaces.
               For production, use 127.0.0.1 or a specific IP.
         port: Port to bind to (default: 5000)
@@ -347,7 +347,7 @@ def start_server(host="0.0.0.0", port=5000, debug=False, auto_port=False):
         - This is a development server, not intended for production
         - Use a production WSGI server (gunicorn, uwsgi) for production
         - Never enable debug mode in production environments
-        - Consider using 127.0.0.1 instead of 0.0.0.0 for local-only access
+        - Keep the loopback default; authentication and quotas are needed before network hosting
     """
     # Check port availability
     if not is_port_available(port, host):
